@@ -5,6 +5,8 @@ import shellac from 'shellac'
 import tmp from 'tmp-promise'
 import path from 'path'
 
+import generateMarkdown from './lib/generate-md'
+
 class Releasecast extends Command {
   static description = 'describe the command here'
 
@@ -126,7 +128,9 @@ class Releasecast extends Command {
         if ${output} {
           $ mkdir -p ${outputDir}
         }
-        $ cp appcast.xml ${outputDir}/appcast.xml
+        
+        $ cp appcast.xml ${outputDir}
+        $ cp ${name}-${version}.dmg ${outputDir}
         if ${releases} {
           $ cp ${name}${build}*.delta ${outputDir} | true
         }
@@ -135,6 +139,8 @@ class Releasecast extends Command {
     this.log()
 
     this.log(chalk.yellow('⚡️ 4. Generating metadata'))
+    const markdown = await generateMarkdown(path.join(outputDir, 'appcast.xml'))
+    console.log(markdown)
 
     // Tidy up temporary directory
     tmpDir.cleanup()

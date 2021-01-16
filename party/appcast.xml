@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Pika</title>
+        <item>
+            <title>0.0.7</title>
+            <pubDate>Sat, 16 Jan 2021 14:53:37 +0000</pubDate>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="Pika-0.0.7.dmg" sparkle:version="7" sparkle:shortVersionString="0.0.7" length="3454100" type="application/octet-stream" sparkle:edSignature="rdmyKIbau5XVorTZGvoNnJfu1/TgtKnL3YL3hbfyjzZq8yVBD+1d94u0b0BCqgs0YCBZ646rhhHHl6I9knjdBg=="/>
+            <sparkle:deltas>
+                <enclosure url="//Pika7-6.delta" sparkle:version="7" sparkle:shortVersionString="0.0.7" sparkle:deltaFrom="6" length="42037" type="application/octet-stream" sparkle:edSignature="D87vfiKa7t+dIzZRJcUiBLWzi0jEo+0KYaTBb3b1svYN2ZPoQtG9QXquJUZwE+nkBCgKRpDH7aY3kFEERYapCw=="/>
+                <enclosure url="//Pika7-5.delta" sparkle:version="7" sparkle:shortVersionString="0.0.7" sparkle:deltaFrom="5" length="109007" type="application/octet-stream" sparkle:edSignature="+rY/FDvoAXodLYxijjPjanvfAwEpi6IMFZ+bRXH6AdfczgP3xkfLCCtaYW0Wh6UBiw2pxAVpzCkPMdPlbYHwAA=="/>
+                <enclosure url="//Pika7-4.delta" sparkle:version="7" sparkle:shortVersionString="0.0.7" sparkle:deltaFrom="4" length="918599" type="application/octet-stream" sparkle:edSignature="6TubssXwzt6q7A4xvkXX320mTHriRmzhEwJCFT/M3INKzsibautDfY71tGFCI4d4GiE4B84nf13DjXRGevTgCQ=="/>
+                <enclosure url="//Pika7-3.delta" sparkle:version="7" sparkle:shortVersionString="0.0.7" sparkle:deltaFrom="3" length="974914" type="application/octet-stream" sparkle:edSignature="1yWvFQcDI30or7faYvlx/RTuKvBwHOr3dDR88/c2yN+BYmwqVxDZ59C20J8iaWLnlU13LZbnHq8sElgiovoODQ=="/>
+                <enclosure url="//Pika7-2.delta" sparkle:version="7" sparkle:shortVersionString="0.0.7" sparkle:deltaFrom="2" length="975422" type="application/octet-stream" sparkle:edSignature="kFfUUeBRNmZGUSd+ZgnWZuVueJqGT5uoapw5FNu+YIGrJG/Vz7lR5ydesuJLSo7oGRrNCpBfE+2hgA6VBPT2CQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>0.0.6</title>
+            <pubDate>Sat, 16 Jan 2021 14:53:33 +0000</pubDate>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="Pika-0.0.6.dmg" sparkle:version="6" sparkle:shortVersionString="0.0.6" length="3455111" type="application/octet-stream" sparkle:edSignature="cF+WohdscRtWRB4o4pcP2J+6ulEvm3dfy8wSkPhHYXQ7g7cZ6bIogLKlIPpmAl7oOWZL2qHUle1n4ELXHFK7AQ=="/>
+        </item>
+        <item>
+            <title>0.0.5</title>
+            <pubDate>Sat, 16 Jan 2021 14:53:33 +0000</pubDate>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="Pika-0.0.5.dmg" sparkle:version="5" sparkle:shortVersionString="0.0.5" length="3455319" type="application/octet-stream" sparkle:edSignature="Ppu+7CaMrdFbh2XW6+yB1XAwHIshxjtCNH0G2th6fjQwhbq+bd/+44OOeYfdNyuaStOorlSuGiLM6olclGLSCA=="/>
+        </item>
+        <item>
+            <title>0.0.4</title>
+            <pubDate>Sat, 16 Jan 2021 14:53:33 +0000</pubDate>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="Pika-0.0.4.dmg" sparkle:version="4" sparkle:shortVersionString="0.0.4" length="2671471" type="application/octet-stream" sparkle:edSignature="GAYifji6cNZGcXP5dBTNhwiWb+DAeqkbrO44RqsuofG3dF7iJbCXWzYAcs7sVHZd/fb3u9iRDey2YM/d1foWAg=="/>
+        </item>
+        <item>
+            <title>0.0.3</title>
+            <pubDate>Sat, 16 Jan 2021 14:53:33 +0000</pubDate>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <enclosure url="Pika-0.0.3.dmg" sparkle:version="3" sparkle:shortVersionString="0.0.3" length="3174863" type="application/octet-stream" sparkle:edSignature="DTDdDFms2lqsaF8QfBNEX8xt7EbZX2YPIJ4F+y3QcNgfjYl6ns7zZ5JLpo17xRfg0EKzN2xanEISJU88rEuoBg=="/>
+            <sparkle:deltas>
+                <enclosure url="//Pika3-2.delta" sparkle:version="3" sparkle:shortVersionString="0.0.3" sparkle:deltaFrom="2" length="15416" type="application/octet-stream" sparkle:edSignature="5ZCDaDFYMFk6yi6fgPQbTtDHcCeiPk/e73z3rmZQhfcrg0E5OTvRgVold6g6YXHa0SKPNfyJyhGM5LOPm696DQ=="/>
+            </sparkle:deltas>
+        </item>
+    </channel>
+</rss>
