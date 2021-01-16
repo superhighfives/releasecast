@@ -6,7 +6,7 @@ import tmp from 'tmp-promise'
 import path from 'path'
 import {promises as fs} from 'fs'
 
-import generateMarkdown from './lib/generate-md'
+import generateMarkdown from './generate-md'
 
 class Releasecast extends Command {
   static description = 'describe the command here'
