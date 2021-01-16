@@ -35,7 +35,4 @@ USAGE
 
 -v, --version     Version
 -h, --help        Help
-}
-
-
 ```
