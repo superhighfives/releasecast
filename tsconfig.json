@@ -3,13 +3,14 @@
     "declaration": true,
     "importHelpers": true,
     "module": "commonjs",
-    "outDir": "src/lib",
+    "outDir": "lib",
     "rootDir": "src",
     "strict": true,
     "target": "es2017",
     "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ]
 }

@@ -152,5 +152,4 @@ class Releasecast extends Command {
     tmpDir.cleanup()
   }
 }
-
 export = Releasecast
