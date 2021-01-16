@@ -140,8 +140,13 @@ class Releasecast extends Command {
     this.log()
 
     this.log(chalk.yellow('⚡️ 4. Generating metadata'))
-    const markdown = await generateMarkdown(path.join(outputDir, 'appcast.xml'), title)
+    const markdown = await generateMarkdown(path.join(tmpDir.path, 'appcast.xml'), title)
     await fs.writeFile(path.join(outputDir, `${version}.md`), markdown)
+    this.log('✔ Metadata generated')
+    this.log()
+
+    this.log(chalk.yellow('⚡️ Done!'))
+    this.log(`All files are now available in ${outputDir}`)
 
     // Tidy up temporary directory
     tmpDir.cleanup()
