@@ -82,7 +82,7 @@ class Releasecast extends Command {
     }
 
     await shellac`
-      $ cp -r ${app} ${tmpDir.path}
+      $ ditto -rsrc ${app} ${tmpDir.path}/${app}
       in ${tmpDir.path} {
         $$ create-dmg ${app}
       }
@@ -90,8 +90,8 @@ class Releasecast extends Command {
 
     this.log('- Renaming DMG...')
     await shellac.in(tmpDir.path)`
-      $$ mv "${name} ${version}.dmg" ${name}-${version}.dmg
-      $$ rm -rf ${app}
+      $ mv "${name} ${version}.dmg" ${name}-${version}.dmg
+      $ rm -rf ${app}
     `
     this.log(`✔ Renamed to ${name}-${version}.dmg`)
 
@@ -126,14 +126,15 @@ class Releasecast extends Command {
         if ${output} {
           $ mkdir -p ${outputDir}
         }
-        $$ cp appcast.xml ${outputDir}/appcast.xml
+        $ cp appcast.xml ${outputDir}/appcast.xml
         if ${releases} {
-          $$ cp ${name}${build}*.delta ${outputDir}
+          $ cp ${name}${build}*.delta ${outputDir} | true
         }
       `
+    this.log('✔ Releases generated, applicable deltas and appcast.xml saved')
+    this.log()
 
-    // console.log(tmpDir)
-    // return
+    this.log(chalk.yellow('⚡️ 4. Generating metadata'))
 
     // Tidy up temporary directory
     tmpDir.cleanup()
