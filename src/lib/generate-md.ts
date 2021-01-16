@@ -1,9 +1,9 @@
 const fs = require('fs').promises
 const xml2js = require('xml2js')
 
-function parseJSON(release: any) {
+function parseJSON(release: any, title: string) {
   return `---
-title: ADD_TITLE
+title: ${title}
 date: ${release.date}
 signature: ${release.signature}
 size: ${release.size}
@@ -64,11 +64,11 @@ async function parseAppcast(data: any) {
   })
 }
 
-export default async function generateMarkdown(url: string) {
+export default async function generateMarkdown(url: string, title?: string) {
   const rawFile = await fs.readFile(url, 'utf8')
   const appcast = await parseAppcast(rawFile)
   const json = await parseXML(appcast)
 
-  const markdown = parseJSON(json)
+  const markdown = parseJSON(json, title || '')
   return markdown
 }

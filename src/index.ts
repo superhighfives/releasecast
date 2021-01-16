@@ -4,6 +4,7 @@ import chalk from 'chalk'
 import shellac from 'shellac'
 import tmp from 'tmp-promise'
 import path from 'path'
+import {promises as fs} from 'fs'
 
 import generateMarkdown from './lib/generate-md'
 
@@ -14,6 +15,7 @@ class Releasecast extends Command {
     email: flags.string({char: 'e', description: 'Apple Developer email', required: true}),
     releases: flags.string({char: 'r', description: 'Folder of releases to make deltas with'}),
     output: flags.string({char: 'o', description: 'Output folder'}),
+    title: flags.string({char: 't', description: 'Release title'}),
     clean: flags.boolean({char: 'c', description: 'Clean Sparkle cache'}),
     dry: flags.boolean({char: 'd', description: 'Don\'t upload DMG to Apple\'s servers'}),
 
@@ -31,7 +33,7 @@ class Releasecast extends Command {
     this.log(chalk.yellow('⚡️ Casting...'))
 
     const {app} = args
-    const {clean, email, releases, output, dry} = flags
+    const {clean, email, releases, output, title = '', dry} = flags
 
     if (!app) {
       this.error('Please provide a .app file')
@@ -129,7 +131,6 @@ class Releasecast extends Command {
           $ mkdir -p ${outputDir}
         }
         
-        $ cp appcast.xml ${outputDir}
         $ cp ${name}-${version}.dmg ${outputDir}
         if ${releases} {
           $ cp ${name}${build}*.delta ${outputDir} | true
@@ -139,8 +140,8 @@ class Releasecast extends Command {
     this.log()
 
     this.log(chalk.yellow('⚡️ 4. Generating metadata'))
-    const markdown = await generateMarkdown(path.join(outputDir, 'appcast.xml'))
-    console.log(markdown)
+    const markdown = await generateMarkdown(path.join(outputDir, 'appcast.xml'), title)
+    await fs.writeFile(path.join(outputDir, `${version}.md`), markdown)
 
     // Tidy up temporary directory
     tmpDir.cleanup()
