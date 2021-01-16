@@ -9,7 +9,7 @@ import {promises as fs} from 'fs'
 import generateMarkdown from './generate-md'
 
 class Releasecast extends Command {
-  static description = 'describe the command here'
+  static description = 'Runs an app through a bunch of required steps for Sparkle'
 
   static flags = {
     email: flags.string({char: 'e', description: 'Apple Developer email', required: true}),
