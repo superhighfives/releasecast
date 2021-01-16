@@ -92,19 +92,17 @@ class Releasecast extends Command {
     await shellac.in(tmpDir.path)`
       $$ mv "${name} ${version}.dmg" ${name}-${version}.dmg
       $$ rm -rf ${app}
-    `
-    this.log(`✔ Renamed to ${name}-${version}.dmg`)
 
-    const {dmg_count} = await shellac.in(tmpDir.path)`
+      await ${() => this.log(`✔ Renamed to ${name}-${version}.dmg`)}
+
       $ ls *.dmg | wc -l
-      stdout >> dmg_count
+      stdout >> ${(dmg_count) => {
+        if (Number(dmg_count) > 5) {
+          this.warn('Only the latest five releases will be processed by appcast')
+        }
+        this.log()    
+      }}
     `
-
-    if (Number(dmg_count) > 5) {
-      this.warn('Only the latest five releases will be processed by appcast')
-    }
-
-    this.log()
 
     this.log(chalk.yellow('⚡️ 2. Notarising DMG with Apple'))
     if (dry) {
