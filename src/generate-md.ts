@@ -59,9 +59,6 @@ async function parseAppcast(data: any) {
   return xml2js
   .parseStringPromise(data)
   .then((result: any) => result)
-  .catch((error: any) => {
-    return {error}
-  })
 }
 
 export default async function generateMarkdown(url: string, title?: string) {
