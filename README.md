@@ -18,18 +18,18 @@ Releasecast is made up of four key steps:
 ## ⚡️ 1. Processing DMG
 
 **Dependencies:**
-- [ditto](https://ss64.com/osx/ditto.html) (macOS native)
-- [create-dmg](https://github.com/sindresorhus/create-dmg)
+- [`ditto`](https://ss64.com/osx/ditto.html) (macOS native)
+- [`create-dmg`](https://github.com/sindresorhus/create-dmg)
 
 ## ⚡️ 2. Notarising DMG with Apple
 
 **Dependencies:**
-- xcrun altool (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
+- `xcrun altool` (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
 
 ## ⚡️ 3. Generating release files
 
 **Dependencies:**
-- generate_appcast ([via Sparkle project](https://sparkle-project.org/))
+- `generate_appcast` ([via Sparkle project](https://sparkle-project.org/))
 
 *Note:* Releasecast expects the `generate_appcast` executable to be available, so you'll need to add it to your `$PATH`. There doesn't seem to be a `brew install generate_appcast` or similar, but if you know of a better way to do this I missed, please open an issue.
 
