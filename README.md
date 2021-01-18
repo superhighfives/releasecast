@@ -7,7 +7,7 @@
 
 <img width="780" alt="A screenshot of releasecast in progress" src="https://user-images.githubusercontent.com/449385/104969449-57789a00-59e0-11eb-8ee2-eeb279ed4123.png">
 
-[Releasecast](https://www.npmjs.com/package/releasecast) is a command line tool, built with [Shellac](https://www.npmjs.com/package/shellac) to help you get from a Mac .app (like [Pika](https://superhighfives.com/pika)) to release.
+[Releasecast](https://www.npmjs.com/package/releasecast) is a command line tool, built with [Shellac](https://www.npmjs.com/package/shellac), to help you get from a Mac .app (like [Pika](https://superhighfives.com/pika)) to release.
 
 It requires a .app file as an input along with your Apple Developer email [and a password in your keychain](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow#3087734), and optionally, a folder of previous releases, and generates a dmg, notorizes it via Apple, generates Sparkle project data in markdown format, and creates deltas that can be used as part of a release pipeline.
 
