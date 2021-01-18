@@ -11,7 +11,7 @@
 
 It requires a .app file as an input along with your Apple Developer email [and a password in your keychain](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow#3087734), and optionally, a folder of previous releases, and generates a dmg, notorizes it via Apple, generates Sparkle project data in markdown format, and creates deltas that can be used as part of a release pipeline.
 
-This set up is pretty specific to my needs, as I use the markdown to generate the appcast feed in NextJS. That said, the source code may be useful to someone else, so here we are.
+This set up is pretty specific to my needs, as I use the markdown to generate the appcast feed in NextJS. That said, the source code may be useful to someone else, so here we are. To really dig into what's happening, [check out the source code](https://github.com/superhighfives/releasecast/blob/main/src/index.ts).
 
 Releasecast is made up of four key steps:
 
