@@ -5,6 +5,8 @@
 [![Downloads/week](https://img.shields.io/npm/dw/releasecast.svg)](https://npmjs.org/package/releasecast)
 [![License](https://img.shields.io/npm/l/releasecast.svg)](https://github.com/superhighfives/releasecast/blob/master/package.json)
 
+<img width="780" alt="A screenshot of releasecast in progress" src="https://user-images.githubusercontent.com/449385/104969449-57789a00-59e0-11eb-8ee2-eeb279ed4123.png">
+
 [Releasecast](https://www.npmjs.com/package/releasecast) is a command line tool, built with [Shellac](https://www.npmjs.com/package/shellac) to help you get from a Mac .app (like [Pika](https://superhighfives.com/pika)) to release.
 
 It takes a .app file as an input, and optionally, a folder of previous releases and using your [Apple Developer email and a password in your keychain](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow#3087734), and generates a dmg, notorizes it via Apple, generates Sparkle project data in markdown format, and creates deltas that can be used as part of a release pipeline.
@@ -15,30 +17,30 @@ Releasecast is made up of four key steps:
 
 ## ⚡️ 1. Processing DMG
 
-Dependencies:
+**Dependencies:**
 - [ditto](https://ss64.com/osx/ditto.html) (macOS native)
 - [create-dmg](https://github.com/sindresorhus/create-dmg)
 
 ## ⚡️ 2. Notarising DMG with Apple
 
-Dependencies:
+**Dependencies:**
 - xcrun altool (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
 
 ## ⚡️ 3. Generating release files
 
-Dependencies:
+**Dependencies:**
 - generate_appcast ([via Sparkle project](https://sparkle-project.org/))
 
 *Note:* Releasecast expects the `generate_appcast` executable to be available, so you'll need to add it to your `$PATH`. There doesn't seem to be a `brew install generate_appcast` or similar, but if you know of a better way to do this I missed, please open an issue.
 
 ## ⚡️ 4. Generating metadata
 
-Dependencies:
+**Dependencies:**
 - [Node 12.16.3](https://nodejs.org/en/blog/release/v12.16.3/)
 
 ## Output
 
-Releasecast will place a markdown file, an XML file (which you can remove if you don't need it), and if you provided a folder of previous releases, a collection of deltas.
+Releasecast will place the dmg, markdown file, and if you provided a folder of previous releases, a collection of deltas into the current directory (or the provided export location.
 
 ---
 
