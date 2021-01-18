@@ -40,7 +40,7 @@ Releasecast is made up of four key steps:
 
 ## Output
 
-Releasecast will place the dmg, markdown file, and if you provided a folder of previous releases, a collection of deltas into the current directory (or the provided export location.
+Releasecast will place the dmg, markdown file, and (if you provided a folder of previous releases) a collection of deltas, into the current directory (or you can pass in your own via the `--output` flag).
 
 ---
 
