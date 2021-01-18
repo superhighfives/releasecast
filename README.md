@@ -9,7 +9,7 @@
 
 [Releasecast](https://www.npmjs.com/package/releasecast) is a command line tool, built with [Shellac](https://www.npmjs.com/package/shellac) to help you get from a Mac .app (like [Pika](https://superhighfives.com/pika)) to release.
 
-It takes a .app file as an input, and optionally, a folder of previous releases and using your [Apple Developer email and a password in your keychain](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow#3087734), and generates a dmg, notorizes it via Apple, generates Sparkle project data in markdown format, and creates deltas that can be used as part of a release pipeline.
+It requires a .app file as an input along with your Apple Developer email [and a password in your keychain](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow#3087734), and optionally, a folder of previous releases, and generates a dmg, notorizes it via Apple, generates Sparkle project data in markdown format, and creates deltas that can be used as part of a release pipeline.
 
 This set up is pretty specific to my needs, as I use the markdown to generate the appcast feed in NextJS. That said, the source code may be useful to someone else, so here we are.
 
