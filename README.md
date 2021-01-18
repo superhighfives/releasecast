@@ -1,12 +1,46 @@
-releasecast
-===========
-
-A tool to help you get from app to release.
+# ✨ Releasecast
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/releasecast.svg)](https://npmjs.org/package/releasecast)
 [![Downloads/week](https://img.shields.io/npm/dw/releasecast.svg)](https://npmjs.org/package/releasecast)
 [![License](https://img.shields.io/npm/l/releasecast.svg)](https://github.com/superhighfives/releasecast/blob/master/package.json)
+
+Releasecast is a command line tool, built with [Shellac](https://www.npmjs.com/package/shellac) to help you get from a Mac .app (like [Pika](https://superhighfives.com/pika)) to release.
+
+It takes a .app file as an input, and optionally, a folder of previous releases and using your [Apple Developer email and a password in your keychain](https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow#3087734), and generates a dmg, notorizes it via Apple, generates Sparkle project data in markdown format, and creates deltas that can be used as part of a release pipeline.
+
+This set up is pretty specific to my needs, as I use the markdown to generate the appcast feed in NextJS. That said, the source code may be useful to someone else, so here we are.
+
+Releasecast is made up of four key steps:
+
+## ⚡️ 1. Processing DMG
+
+Dependencies:
+- [ditto](https://ss64.com/osx/ditto.html) (macOS native)
+- [create-dmg](https://github.com/sindresorhus/create-dmg)
+
+## ⚡️ 2. Notarising DMG with Apple
+
+Dependencies:
+- xcrun altool (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
+
+## ⚡️ 3. Generating release files
+
+Dependencies:
+- generate_appcast ([via Sparkle project](https://sparkle-project.org/))
+
+*Note:* Releasecast expects the `generate_appcast` executable to be available, so you'll need to add it to your `$PATH`. There doesn't seem to be a `brew install generate_appcast` or similar, but if you know of a better way to do this I missed, please open an issue.
+
+## ⚡️ 4. Generating metadata
+
+Dependencies:
+- [Node 12.16.3](https://nodejs.org/en/blog/release/v12.16.3/)
+
+## Output
+
+Releasecast will place a markdown file, an XML file (which you can remove if you don't need it), and if you provided a folder of previous releases, a collection of deltas.
+
+---
 
 * [Usage](#usage)
 * [Commands](#commands)
@@ -18,9 +52,9 @@ $ releasecast App.app
 running command...
 $ releasecast (-v|--version|version)
 releasecast/0.0.0 darwin-x64 node-v12.16.3
-$ releasecast --help [COMMAND]
+$ releasecast --help
 USAGE
-  $ releasecast App.app
+  $ releasecast App.app -e your@email.com
 ...
 ```
 
@@ -35,4 +69,9 @@ USAGE
 
 -v, --version     Version
 -h, --help        Help
+```
+
+For example:
+```
+$ releasecast Pika.app -e your@email.com -t "Release Title" -r past-releases -o exports
 ```
