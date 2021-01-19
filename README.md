@@ -40,7 +40,7 @@ Releasecast is made up of four key steps:
 
 ## Output
 
-Releasecast will place the dmg, markdown file, and (if you provided a folder of previous releases) a collection of deltas, into the current directory (or you can pass in your own via the `--output` flag).
+Releasecast will place the dmg, appcast.xml, markdown file, and (if you provided a folder of previous releases) a collection of deltas, into the current directory (or you can pass in your own via the `--output` flag).
 
 ---
 
@@ -66,8 +66,8 @@ USAGE
 -r, --releases    Folder of releases to make deltas with
 -o, --output      Output folder
 -t, --title       Release title
--c, --clean       Clean Sparkle cache (warning: cleans all Sparkle cache)
 -d, --dry         Don't upload DMG to Apple's servers
+-c, --clean       Clean Sparkle cache (note: clears out the entire Sparkle cache)
 
 -v, --version     Version
 -h, --help        Help
