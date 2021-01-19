@@ -52,7 +52,7 @@ class Releasecast extends Command {
       $ defaults read $PWD/${app}/Contents/Info CFBundleIdentifier
       stdout >> identifier
 
-      $ defaults read $PWD/${app}/Contents/Info CFBundleShortVersionString      
+      $ defaults read $PWD/${app}/Contents/Info CFBundleShortVersionString
       stdout >> version
 
       $ defaults read $PWD/${app}/Contents/Info CFBundleVersion
@@ -130,8 +130,9 @@ class Releasecast extends Command {
         if ${output} {
           $ mkdir -p ${outputDir}
         }
-        
+
         $ cp ${name}-${version}.dmg ${outputDir}
+        $ cp appcast.xml ${outputDir}
         if ${releases} {
           $ cp ${name}${build}*.delta ${outputDir} | true
         }
