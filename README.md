@@ -74,7 +74,7 @@ USAGE
 ```
 
 For example:
-```
+```shell
 $ releasecast Pika.app -e your@email.com -t "Release Title" -r past-releases -o exports
 ```
 
@@ -82,7 +82,7 @@ $ releasecast Pika.app -e your@email.com -t "Release Title" -r past-releases -o 
 
 For the exmaple below, let's start with a standard `Appcast.xml`, like the one below:
 
-```
+```xml
 <?xml version="1.0" standalone="yes"?>
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
