@@ -227,4 +227,4 @@ export default async (slug) => {
 }
 ```
 
-You can see an example of this in action at https://superhighfives.com/pika.
+You can see an example of these ideas in action at https://superhighfives.com/pika, and you can see the output `Appcast.xml` at https://superhighfives.com/releases/pika/
