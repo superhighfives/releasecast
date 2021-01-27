@@ -1,10 +1,10 @@
 {
   "name": "releasecast",
   "description": "A tool to take an .app file from export to release",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Charlie Gleason @superhighfives",
   "bin": {
-    "releasecast": "./bin/run"
+    "releasecast": "bin/run"
   },
   "bugs": "https://github.com/superhighfives/releasecast/issues",
   "dependencies": {
