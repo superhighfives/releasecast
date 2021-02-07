@@ -29,7 +29,7 @@ class Releasecast extends Command {
   async run() {
     const {args, flags} = this.parse(Releasecast)
 
-    this.log(chalk.yellow('✨ Release·cast ✨'))
+    this.log(chalk.yellow('✨ Releasecast ✨'))
     this.log(chalk.yellow('⚡️ Casting...'))
 
     const {app} = args
@@ -46,16 +46,16 @@ class Releasecast extends Command {
     this.log(`- Scanning ${app}`)
 
     const {name, identifier, version, build} = await shellac`
-      $ defaults read $PWD/${app}/Contents/Info CFBundleName
+      $ defaults read "$PWD/${app}/Contents/Info" CFBundleName
       stdout >> name
 
-      $ defaults read $PWD/${app}/Contents/Info CFBundleIdentifier
+      $ defaults read "$PWD/${app}/Contents/Info" CFBundleIdentifier
       stdout >> identifier
 
-      $ defaults read $PWD/${app}/Contents/Info CFBundleShortVersionString
+      $ defaults read "$PWD/${app}/Contents/Info" CFBundleShortVersionString      
       stdout >> version
 
-      $ defaults read $PWD/${app}/Contents/Info CFBundleVersion
+      $ defaults read "$PWD/${app}/Contents/Info" CFBundleVersion
       stdout >> build
     `
 
