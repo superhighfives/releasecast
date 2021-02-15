@@ -18,6 +18,7 @@ class Releasecast extends Command {
     title: flags.string({char: 't', description: 'Release title'}),
     clean: flags.boolean({char: 'c', description: 'Clean Sparkle cache'}),
     dry: flags.boolean({char: 'd', description: 'Don\'t upload DMG to Apple\'s servers'}),
+    beta: flags.boolean({char: 'b', description: 'Flag as beta release'}),
 
     // secondary
     version: flags.version({char: 'v'}),
@@ -33,7 +34,7 @@ class Releasecast extends Command {
     this.log(chalk.yellow('⚡️ Casting...'))
 
     const {app} = args
-    const {clean, email, releases, output, title = '', dry} = flags
+    const {clean, email, releases, output, title = '', dry, beta = false} = flags
 
     if (!app) {
       this.error('Please provide a .app file')
@@ -141,7 +142,7 @@ class Releasecast extends Command {
     this.log()
 
     this.log(chalk.yellow('⚡️ 4. Generating metadata'))
-    const markdown = await generateMarkdown(path.join(tmpDir.path, 'appcast.xml'), title)
+    const markdown = await generateMarkdown(path.join(tmpDir.path, 'appcast.xml'), title, beta)
     await fs.writeFile(path.join(outputDir, `${version}.md`), markdown)
     this.log('✔ Metadata generated')
     this.log()

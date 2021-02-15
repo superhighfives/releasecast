@@ -66,6 +66,7 @@ USAGE
 -r, --releases    Folder of releases to make deltas with
 -o, --output      Output folder
 -t, --title       Release title
+-b, --beta        Add beta flag to markdown output
 -d, --dry         Don't upload DMG to Apple's servers
 -c, --clean       Clean Sparkle cache (note: clears out the entire Sparkle cache)
 

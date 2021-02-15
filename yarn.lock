@@ -1768,10 +1768,10 @@ shebang-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
-shellac@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/shellac/-/shellac-0.4.0.tgz#06f4358f85de86aa0b475ff30f8dfc4e752bf51b"
-  integrity sha512-AoYC3mu2j7iuOU1EpkkZsbuwVDYwUZ9DPBTJYGhS7KWFT0Sq7SYIY8LgDJkQxAzZ4mHexnP8UB7jcjk+P8ZnGg==
+shellac@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/shellac/-/shellac-0.5.0.tgz#0b4861afef3a95aecf7d303550469d6a68b35701"
+  integrity sha512-8hSp2PdvXAqBXLiKscJaUYlOHX7TT9Vm46ZyEIK6SYfUcdaQ2D7C0ldOo+1lbYUNhdKMyboja+pauTMxFpMFrA==
   dependencies:
     reghex "^1.0.2"
 

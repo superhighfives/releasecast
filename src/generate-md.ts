@@ -1,7 +1,7 @@
 const fs = require('fs').promises
 const xml2js = require('xml2js')
 
-function parseJSON(release: any, title: string) {
+function parseJSON(release: any, title: string, beta = false) {
   return `---
 title: ${title}
 date: ${release.date}
@@ -9,12 +9,12 @@ signature: ${release.signature}
 size: ${release.size}
 build: ${release.build}
 system: ${release.systemVersion}
-${release.deltas ? `delta:${release.deltas && release.deltas.map((delta: any) => {
-    return `
+${beta ? 'beta: true\n' : ''}${release.deltas ? `delta:${release.deltas && release.deltas.map((delta: any) => {
+  return `
   - from: ${delta.from}
     size: ${delta.size}
     signature: ${delta.signature}`
-  }).join('')}
+}).join('')}
 ---` : '---'}`
 }
 
@@ -61,11 +61,11 @@ async function parseAppcast(data: any) {
   .then((result: any) => result)
 }
 
-export default async function generateMarkdown(url: string, title?: string) {
+export default async function generateMarkdown(url: string, title = '', beta = false) {
   const rawFile = await fs.readFile(url, 'utf8')
   const appcast = await parseAppcast(rawFile)
   const json = await parseXML(appcast)
 
-  const markdown = parseJSON(json, title || '')
+  const markdown = parseJSON(json, title, beta)
   return markdown
 }
