@@ -74,7 +74,8 @@ class Releasecast extends Command {
     }
 
     const tmpDir = await tmp.dir({unsafeCleanup: true})
-    const outputDir = output ? path.join(process.cwd(), output) : process.cwd()
+    const outputDirReference = output ? path.join(process.cwd(), output) : process.cwd()
+    const outputDir = `"${outputDirReference}"`
 
     this.log(chalk.yellow('⚡️ 1. Processing DMG'))
 
@@ -143,7 +144,7 @@ class Releasecast extends Command {
 
     this.log(chalk.yellow('⚡️ 4. Generating metadata'))
     const markdown = await generateMarkdown(path.join(tmpDir.path, 'appcast.xml'), title, beta)
-    await fs.writeFile(path.join(outputDir, `${version}.md`), markdown)
+    await fs.writeFile(path.join(outputDirReference, `${version}.md`), markdown)
     this.log('✔ Metadata generated')
     this.log()
 
