@@ -33,6 +33,8 @@ Releasecast is made up of four key steps:
 
 *Note:* Releasecast expects the `generate_appcast` executable to be available, so you'll need to add it to your `$PATH`. There doesn't seem to be a `brew install generate_appcast` or similar, but if you know of a better way to do this I missed, please open an issue.
 
+*Note:* Releasecast expects output from Sparkle 1.x—you can find [the latest 1.x version at their GitHub releases](https://github.com/sparkle-project/Sparkle/releases).
+
 ## ⚡️ 4. Generating metadata
 
 **Dependencies:**
