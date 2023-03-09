@@ -128,7 +128,7 @@ class Releasecast extends Command {
     this.log(chalk.yellow('⚡️ 3. Generating release files'))
 
     await shellac.in(tmpDir.path)`
-        $ generate_appcast .
+        $ generate_appcast . -o appcast.xml
         if ${output} {
           $ mkdir -p ${outputDir}
         }
