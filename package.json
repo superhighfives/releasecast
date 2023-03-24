@@ -1,7 +1,7 @@
 {
   "name": "releasecast",
   "description": "A tool to take an .app file from export to release",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Charlie Gleason @superhighfives",
   "bin": {
     "releasecast": "bin/run"
