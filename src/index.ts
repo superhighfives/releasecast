@@ -140,7 +140,7 @@ class Releasecast extends Command {
       this.log(chalk.cyan("🤚 Skipping notarisation"));
     } else {
       const { dmg_uuid } = await shellac.in(tmpDir.path)`
-        $ xcrun altool --notarize-app --primary-bundle-id ${identifier}.dmg --username ${email} --password @keychain:Terminal --file ${name}-${version}.dmg
+        $ xcrun notarytool submit --apple-id ${email} --keychain-profile "Terminal" ${name}-${version}.dmg --wait
         stdout >> dmg_uuid
       `;
       this.log("✔ Successfully uploaded");
