@@ -24,7 +24,7 @@ Releasecast is made up of four key steps:
 ## ⚡️ 2. Notarising DMG with Apple
 
 **Dependencies:**
-- `xcrun altool` (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
+- `xcrun notarytool` (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
 
 ## ⚡️ 3. Generating release files
 
