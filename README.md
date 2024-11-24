@@ -13,6 +13,13 @@ It requires a .app file as an input along with your Apple Developer email [and a
 
 This set up is pretty specific to my needs, as I use the markdown to generate the appcast feed in NextJS. That said, the source code may be useful to someone else, so here we are. To really dig into what's happening, [check out the source code](https://github.com/superhighfives/releasecast/blob/main/src/index.ts).
 
+**To install:**
+
+```bash
+npm install --global releasecast
+```
+---
+
 Releasecast is made up of four key steps:
 
 ## ⚡️ 1. Processing DMG
@@ -25,6 +32,8 @@ Releasecast is made up of four key steps:
 
 **Dependencies:**
 - `xcrun notarytool` (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
+
+When you first run this, you may need to run `xcrun notarytool store-credentials` to ensure the Terminal has access to the appropriate credentials. Be sure to call the profile "Terminal".
 
 ## ⚡️ 3. Generating release files
 
