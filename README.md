@@ -28,12 +28,16 @@ Releasecast is made up of four key steps:
 - [`ditto`](https://ss64.com/osx/ditto.html) (macOS native)
 - [`create-dmg`](https://github.com/sindresorhus/create-dmg)
 
+The DMG is code signed with a "Developer ID Application" identity, which is required for Gatekeeper to accept apps distributed outside the Mac App Store. Make sure you have a valid Developer ID Application certificate installed in your keychain.
+
 ## ⚡️ 2. Notarising DMG with Apple
 
 **Dependencies:**
 - `xcrun notarytool` (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
 
 When you first run this, you may need to run `xcrun notarytool store-credentials` to ensure the Terminal has access to the appropriate credentials. Be sure to call the profile "Terminal".
+
+After notarisation succeeds, the notarisation ticket is stapled to the DMG via `xcrun stapler staple`, so that Gatekeeper can verify it offline.
 
 ## ⚡️ 3. Generating release files
 

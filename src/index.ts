@@ -113,7 +113,7 @@ class Releasecast extends Command {
     await shellac`
       $ ditto -rsrc ${app} ${tmpDir.path}/${app}
       in ${tmpDir.path} {
-        $$ create-dmg ${app}
+        $$ create-dmg --identity "Developer ID Application" ${app}
       }
     `;
 
@@ -143,8 +143,14 @@ class Releasecast extends Command {
         $ xcrun notarytool submit --apple-id ${email} --keychain-profile "Terminal" ${name}-${version}.dmg --wait
         stdout >> dmg_uuid
       `;
-      this.log("✔ Successfully uploaded");
+      this.log("✔ Successfully notarised");
       this.log(`ℹ ${dmg_uuid}`);
+
+      this.log("- Stapling notarisation ticket...");
+      await shellac.in(tmpDir.path)`
+        $ xcrun stapler staple ${name}-${version}.dmg
+      `;
+      this.log("✔ Ticket stapled");
     }
     this.log();
 
