@@ -113,7 +113,7 @@ class Releasecast extends Command {
     await shellac`
       $ ditto -rsrc ${app} ${tmpDir.path}/${app}
       in ${tmpDir.path} {
-        $$ create-dmg --identity "Developer ID Application" ${app}
+        $$ create-dmg ${app}
       }
     `;
 
