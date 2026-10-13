@@ -18,14 +18,24 @@ ${beta ? 'beta: true\n' : ''}${release.deltas ? `delta:${release.deltas && relea
 ---` : '---'}`
 }
 
-async function parseXML(xml: { rss: { channel: any[] } }) {
+export function parseXML(xml: { rss: { channel: any[] } }) {
   const channel = xml.rss.channel[0]
   const {item} = channel
 
   const release = item[0]
   const details = release.enclosure[0].$
 
-  if (release.title[0] !== details['sparkle:shortVersionString']) {
+  // Sparkle 2 writes the versions as <item> elements; Sparkle 1 wrote them as
+  // enclosure attributes.
+  const build =
+    (release['sparkle:version'] && release['sparkle:version'][0]) ||
+    details['sparkle:version']
+  const shortVersion =
+    (release['sparkle:shortVersionString'] &&
+      release['sparkle:shortVersionString'][0]) ||
+    details['sparkle:shortVersionString']
+
+  if (!build || release.title[0] !== shortVersion) {
     throw new Error('Version weirdness?')
   }
 
@@ -42,20 +52,20 @@ async function parseXML(xml: { rss: { channel: any[] } }) {
         signature: delta['sparkle:edSignature'],
       }
     })
-    .sort((a: any, b: any) => (a.from < b.from ? 1 : -1))
+    .sort((a: any, b: any) => Number(b.from) - Number(a.from))
 
   return {
     version: release.title[0],
     date: release.pubDate[0],
     systemVersion: release['sparkle:minimumSystemVersion'][0],
-    build: details['sparkle:version'],
+    build,
     size: details.length,
     signature: details['sparkle:edSignature'],
     ...(deltas && {deltas}),
   }
 }
 
-async function parseAppcast(data: any) {
+export async function parseAppcast(data: any) {
   return xml2js
   .parseStringPromise(data)
   .then((result: any) => result)
@@ -64,7 +74,7 @@ async function parseAppcast(data: any) {
 export default async function generateMarkdown(url: string, title = '', beta = false) {
   const rawFile = await fs.readFile(url, 'utf8')
   const appcast = await parseAppcast(rawFile)
-  const json = await parseXML(appcast)
+  const json = parseXML(appcast)
 
   const markdown = parseJSON(json, title, beta)
   return markdown

@@ -46,7 +46,7 @@ After notarisation succeeds, the notarisation ticket is stapled to the DMG via `
 
 *Note:* Releasecast expects the `generate_appcast` executable to be available, so you'll need to add it to your `$PATH`. There doesn't seem to be a `brew install generate_appcast` or similar, but if you know of a better way to do this I missed, please open an issue.
 
-*Note:* Releasecast expects output from Sparkle 1.x—you can find [the latest 1.x version at their GitHub releases](https://github.com/sparkle-project/Sparkle/releases).
+*Note:* Releasecast reads `generate_appcast` output from both Sparkle 2 (tested with 2.10.0) and Sparkle 1.x—you can find [the latest version at their GitHub releases](https://github.com/sparkle-project/Sparkle/releases). Sparkle 2 writes `sparkle:version` and `sparkle:shortVersionString` as `<item>` elements rather than enclosure attributes; the generated markdown is the same either way.
 
 ## ⚡️ 4. Generating metadata
 
