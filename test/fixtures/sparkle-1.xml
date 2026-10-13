@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Pika</title>
+        <item>
+            <title>2.0.0</title>
+            <pubDate>Sun, 11 Oct 2026 00:10:43 -0700</pubDate>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://superhighfives.com/releases/Pika-2.0.0.dmg" sparkle:version="105" sparkle:shortVersionString="2.0.0" length="8357050" type="application/octet-stream" sparkle:edSignature="atxeD/9hXXxTCyjkgWN510CJOT/QZQ0DBqRT/2RelS2kgKWQ9NRBGP7rb+xIZXm4DFLcRJiAp1VBinVqlPn0Cg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://superhighfives.com/releases/Pika105-97.delta" sparkle:version="105" sparkle:shortVersionString="2.0.0" sparkle:deltaFrom="97" length="3899841" type="application/octet-stream" sparkle:edSignature="RcdDUtJOMpFtvQqQxPgJaef/vutWcQ+rfgVVRO2sM/6Y4PV6kEUP9RZPw6VqGJOZQX5LlUQKFQMscXcMUWaNDw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>1.9.0</title>
+            <pubDate>Sun, 11 Oct 2026 00:10:41 -0700</pubDate>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://superhighfives.com/releases/Pika-1.9.0.dmg" sparkle:version="97" sparkle:shortVersionString="1.9.0" length="7726240" type="application/octet-stream" sparkle:edSignature="cgQ1EpBN2VMqm1aTOiSs5wEcn5pkquCwQ7ImpNJeimQEjkErBc1oiDHtCHgNvgp0qph9PRxxbyLpMoBeyPjuDA=="/>
+        </item>
+    </channel>
+</rss>
