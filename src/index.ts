@@ -103,7 +103,7 @@ class Releasecast extends Command {
     this.log(chalk.yellow("⚡️ 1. Processing DMG"));
 
     if (releases) {
-      this.log("- Copying previous five releases for deltas");
+      this.log("- Copying latest previous release for a delta");
       await shellac`
         $ ls ${releases}/*.dmg | sort -rV | head -1 | xargs -I{} cp {} ${tmpDir.path}
       `;

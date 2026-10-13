@@ -46,12 +46,12 @@ After notarisation succeeds, the notarisation ticket is stapled to the DMG via `
 
 *Note:* Releasecast expects the `generate_appcast` executable to be available, so you'll need to add it to your `$PATH`. There doesn't seem to be a `brew install generate_appcast` or similar, but if you know of a better way to do this I missed, please open an issue.
 
-*Note:* Releasecast reads `generate_appcast` output from both Sparkle 2 (tested with 2.10.0) and Sparkle 1.x—you can find [the latest version at their GitHub releases](https://github.com/sparkle-project/Sparkle/releases). Sparkle 2 writes `sparkle:version` and `sparkle:shortVersionString` as `<item>` elements rather than enclosure attributes; the generated markdown is the same either way.
+*Note:* Releasecast reads `generate_appcast` output from both Sparkle 2 (tested with 2.10.0) and Sparkle 1.x—you can find [the latest version at their GitHub releases](https://github.com/sparkle-project/Sparkle/releases). Sparkle 2 writes `sparkle:version` and `sparkle:shortVersionString` as `<item>` elements rather than enclosure attributes; the generated markdown has the same format either way.
 
 ## ⚡️ 4. Generating metadata
 
 **Dependencies:**
-- [Node 12.16.3](https://nodejs.org/en/blog/release/v12.16.3/)
+- [Node 18 or later](https://nodejs.org/)
 
 ## Output
 
@@ -121,7 +121,7 @@ For the exmaple below, let's start with a standard `Appcast.xml`, like the one b
 </rss>
 ```
 
-When you run the `releasecast` command it will generate your Appcast.xml, your deltas (if you provide a folder of up to five previous releases), and a Markdown file named after the latest version (here, for example, being `0.0.8.md`):
+When you run the `releasecast` command it will generate your Appcast.xml, a delta from the latest release (if you provide a folder of previous releases), and a Markdown file named after the latest version (here, for example, being `0.0.8.md`):
 
 ```shell
 $ releasecast App.app -e your@emailaddress.com -t "A Rad New Release"
@@ -161,7 +161,7 @@ These values correspond to the following:
 - **size:** The file size in bytes. For example, `3551889`.
 - **build:** The build number. For example, `11`.
 - **system:** The minimum system version supported. For example, `10.15` for Catalina and newer.
-- **delta:** An array of up to five deltas, featuring the build number they're updating from, the size in bytes, and the signature.
+- **delta:** An array of deltas (releasecast generates one, from the latest previous release), featuring the build number they're updating from, the size in bytes, and the signature.
   - **from:** The build number the delta updates from. For example, `7`.
   - **size:** The file size in bytes. For example, `282332`.
   - **signature:** An EdDSA (Ed25519) signature, encoded into BASE64 url-file safe format. For example, `76LUCncDkl/qhlpYni1QHG0YLCyL9BWxT0iSj/44R85+fdfux90QudzMasRG56nDOxF0I16A13Z5NRkGPZl6DA==`.
