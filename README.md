@@ -35,7 +35,7 @@ The DMG is code signed with a "Developer ID Application" identity, which is requ
 **Dependencies:**
 - `xcrun notarytool` (via [XCode / Command Line Tools](https://developer.apple.com/downloads/))
 
-When you first run this, you may need to run `xcrun notarytool store-credentials` to ensure the Terminal has access to the appropriate credentials. Be sure to call the profile "Terminal".
+When you first run this, you may need to run `xcrun notarytool store-credentials` to ensure the Terminal has access to the appropriate credentials. Call the profile "Terminal", or pass its name with `--profile`.
 
 After notarisation succeeds, the notarisation ticket is stapled to the DMG via `xcrun stapler staple`, so that Gatekeeper can verify it offline.
 
@@ -84,6 +84,8 @@ USAGE
 -b, --beta        Add beta flag to markdown output
 -d, --dry         Don't upload DMG to Apple's servers
 -c, --clean       Clean Sparkle cache (note: clears out the entire Sparkle cache)
+-p, --profile     notarytool keychain profile (default: Terminal)
+-a, --account     Keychain account of the Sparkle signing key, for apps with their own key
 
 -v, --version     Version
 -h, --help        Help
