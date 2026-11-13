@@ -30,6 +30,16 @@ class Releasecast extends Command {
       description: "Don't upload DMG to Apple's servers",
     }),
     beta: flags.boolean({char: 'b', description: 'Flag as beta release'}),
+    profile: flags.string({
+      char: 'p',
+      description: 'notarytool keychain profile',
+      default: 'Terminal',
+    }),
+    account: flags.string({
+      char: 'a',
+      description:
+        "Keychain account of the Sparkle signing key (generate_appcast's default if not set)",
+    }),
 
     // secondary
     version: flags.version({char: 'v'}),
@@ -53,6 +63,8 @@ class Releasecast extends Command {
       title = '',
       dry,
       beta = false,
+      profile,
+      account,
     } = flags
 
     if (!app) {
@@ -78,6 +90,10 @@ class Releasecast extends Command {
       $ defaults read "$PWD/${app}/Contents/Info" CFBundleVersion
       stdout >> build
     `
+
+    // The DMG's file name: the app's name with spaces as hyphens, so
+    // "Mark One" gives Mark-One-1.0.dmg. Names without spaces are unchanged.
+    const file = `${name.replace(/\s+/g, '-')}-${version}.dmg`
 
     this.log(
       stripIndent(`
@@ -111,18 +127,18 @@ class Releasecast extends Command {
     }
 
     await shellac`
-      $ ditto -rsrc ${app} ${tmpDir.path}/${app}
+      $ ditto -rsrc "${app}" "${tmpDir.path}/${app}"
       in ${tmpDir.path} {
-        $$ create-dmg ${app}
+        $$ create-dmg "${app}"
       }
     `
 
     this.log('- Renaming DMG...')
     await shellac.in(tmpDir.path)`
-      $ mv "${name} ${version}.dmg" ${name}-${version}.dmg
-      $ rm -rf ${app}
+      $ mv "${name} ${version}.dmg" "${file}"
+      $ rm -rf "${app}"
     `
-    this.log(`✔ Renamed to ${name}-${version}.dmg`)
+    this.log(`✔ Renamed to ${file}`)
 
     const {dmg_count} = await shellac.in(tmpDir.path)`
       $ ls *.dmg | wc -l
@@ -140,7 +156,7 @@ class Releasecast extends Command {
       this.log(chalk.cyan('🤚 Skipping notarisation'))
     } else {
       const {dmg_uuid} = await shellac.in(tmpDir.path)`
-        $ xcrun notarytool submit --apple-id ${email} --keychain-profile "Terminal" ${name}-${version}.dmg --wait
+        $ xcrun notarytool submit --apple-id ${email} --keychain-profile "${profile}" "${file}" --wait
         stdout >> dmg_uuid
       `
       this.log('✔ Successfully notarised')
@@ -148,7 +164,7 @@ class Releasecast extends Command {
 
       this.log('- Stapling notarisation ticket...')
       await shellac.in(tmpDir.path)`
-        $ xcrun stapler staple ${name}-${version}.dmg
+        $ xcrun stapler staple "${file}"
       `
       this.log('✔ Ticket stapled')
     }
@@ -157,19 +173,27 @@ class Releasecast extends Command {
     this.log(chalk.yellow('⚡️ 3. Generating release files'))
 
     await shellac.in(tmpDir.path)`
-        $ generate_appcast .
+        $ generate_appcast ${account ? `--account "${account}"` : ''} -o appcast.xml .
 
         if ${output} {
           $ mkdir -p ${outputDir}
         }
 
-        $ cp ${name}-${version}.dmg ${outputDir}
-        $ yes | cp ${name} appcast.xml
+        $ cp "${file}" ${outputDir}
         $ cp appcast.xml ${outputDir}
-        if ${releases} {
-          $ cp ${name}${build}*.delta ${outputDir} | true
-        }
       `
+    // Deltas, named like the DMG: spaces in the app's name become hyphens.
+    const deltas = (await fs.readdir(tmpDir.path)).filter(file =>
+      file.endsWith('.delta')
+    )
+    await Promise.all(
+      deltas.map(delta =>
+        fs.copyFile(
+          path.join(tmpDir.path, delta),
+          path.join(outputDirReference, delta.replace(/\s+/g, '-'))
+        )
+      )
+    )
     this.log('✔ Releases generated, applicable deltas and appcast.xml saved')
     this.log()
 
